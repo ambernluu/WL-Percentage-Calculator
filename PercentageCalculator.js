@@ -1,40 +1,41 @@
 //takes in 1RM and calculates percentages of that
-//let lbs = 10;
-let kG;
-let choice = 1;
 let readline = require('readline');
 const prompt = require('prompt-sync')({sigint: true});
-var oneRM;
 
+const rli = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
-//keep prompting menu until user enters 4 for exit
-while (choice != 4){
-  displayMenu();
-  choice = prompt('');
-  choice = Number(choice);
-  getChoice(choice);
-}  
-
+//display menu
+const displayMenu = () => {
+  rli.question(`\nPlease choose from the menu below. By default, this system uses KG.
+  1. Calculate percentages from a working max
+  2. Convert lbs to KG
+  3. Convert KG to lbs
+  4. EXIT\n`, (answer) => {
+    getChoice(answer);
+  });
+}
 
 //takes the user's input from the menu and sends it to the corresponding function
-function getChoice(choice){
+const getChoice = (choice) => {
   switch(choice){
-    case 1:
-      console.log(`1. Calculate percentages from a working max\nEnter your working max`);
+    case '1':
       calculatePercentages();  
     break;
 
-    case 2:
+    case '2':
       console.log(`2. Convert lbs to KG\nEnter weight in lbs`);
       convertLbsToKilos();
     break;
       
-    case 3:
+    case '3':
       console.log(`3. Convert KG to lbs\nEnter weight in KG`);
       convertLbsToKilos();
     break;
       
-    case 4:
+    case '4':
       console.log(`Exiting program... Have a great day!`);
     break;
       
@@ -43,24 +44,21 @@ function getChoice(choice){
 
     }  
 }
-  
+
 //calculate percentages of oneRM ranging from 65%-95% in 5% incrememnts
-function calculatePercentages()
-  {
-    //oneRM = prompt(`Enter your working max\n`);
-    oneRM = prompt(``);
-    oneRM = Number(oneRM);
-    //console.log(`\n`);
+const calculatePercentages = () => {
+  rli.question(`Enter your working max\n`, (answer) => {
+    const oneRM = Number(answer);
     for (let i=65; i<=95; i+=5) {
-      weight = i*.01*oneRM;
-      weight = Math.round(10*weight)/10;
+      const weight = Math.round(10*(i*.01*oneRM))/10;
       console.log(i+`% of ${oneRM} KG = ${weight} KG`); 
-     
     }
-  }
+    rli.close();
+  });
+};
 
 //converts lbs to KG and returns the weight in KG
-function convertLbsToKilos(){
+const convertLbsToKilos = () => {
   //lbs = prompt(`Enter weight in lbs\n`);
   lbs = prompt(``);
   lbs = Number(lbs);
@@ -70,7 +68,7 @@ function convertLbsToKilos(){
 }
 
 //converts KG to lbs and returns weight in lbs
-function convertKGToLbs(kG){
+const convertKGToLbs = (kG) => {
   //kG = prompt(`Enter weight in KG\n`);
   kG = prompt(``);
   kG = Number(kG);
@@ -79,13 +77,5 @@ function convertKGToLbs(kG){
   console.log(`${KG} KG to lbs is ${lbs} lbs`);
 }
 
-//display menu
-function displayMenu(){
-  console.log(
-    `\nPlease choose from the menu below. By default, this system uses KG.
-    1. Calculate percentages from a working max
-    2. Convert lbs to KG
-    3. Convert KG to lbs
-    4. EXIT`
-  );
-}
+displayMenu();
+  
