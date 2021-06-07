@@ -1,6 +1,5 @@
 //takes in 1RM and calculates percentages of that
 let readline = require('readline');
-const prompt = require('prompt-sync')({sigint: true});
 
 const rli = readline.createInterface({
   input: process.stdin,
@@ -26,12 +25,10 @@ const getChoice = (choice) => {
     break;
 
     case '2':
-      console.log(`2. Convert lbs to KG\nEnter weight in lbs`);
       convertLbsToKilos();
     break;
       
     case '3':
-      console.log(`3. Convert KG to lbs\nEnter weight in KG`);
       convertLbsToKilos();
     break;
       
@@ -59,22 +56,22 @@ const calculatePercentages = () => {
 
 //converts lbs to KG and returns the weight in KG
 const convertLbsToKilos = () => {
-  //lbs = prompt(`Enter weight in lbs\n`);
-  lbs = prompt(``);
-  lbs = Number(lbs);
-  kG = lbs/2.2;
-  kG = Math.round(10*kG)/10;
-  console.log(`${lbs} lbs to KG is ${kG} KG`);
-}
+  rli.question(`Enter weight in lbs\n`, (lbs) => {
+    lbs = Number(lbs);
+    kG = Math.round(10*(lbs/2.2))/10;
+    console.log(`${lbs} lbs to KG is ${kG} KG`); 
+    rli.close();
+  });
+};
 
 //converts KG to lbs and returns weight in lbs
 const convertKGToLbs = (kG) => {
-  //kG = prompt(`Enter weight in KG\n`);
-  kG = prompt(``);
-  kG = Number(kG);
-  lbs = kG*2.2;
-  lbs = Math.round(10*lbs)/10;
-  console.log(`${KG} KG to lbs is ${lbs} lbs`);
+  rli.question(`Enter weight in KG\n`, (kG) => {
+    kG = Number(kG);
+    lbs = Math.round(10*(kG*2.2))/10;
+    console.log(`${KG} KG to lbs is ${lbs} lbs`);
+    rli.close();
+  });
 }
 
 displayMenu();
