@@ -44,6 +44,7 @@ const getChoice = (choice) => {
 }
 
 //calculate percentages of oneRM ranging from 65%-95% in 5% incrememnts
+//NEED TO IMPLEMENT ERROR CHECKING IN THE FUTURE
 const calculatePercentages = () => {
   rli.question(`Enter your working max\n`, (answer) => {
     const oneRM = Number(answer);
@@ -57,6 +58,7 @@ const calculatePercentages = () => {
 
 //converts lbs to KG and returns the weight in KG
 const convertLbsToKilos = () => {
+  //NEED TO IMPLEMENT ERROR CHECKING IN THE FUTURE
   rli.question(`Enter weight in lbs\n`, (lbs) => {
     const kG = Math.round(10*(Number(lbs/2.2)))/10;
     console.log(`${lbs} lbs to KG is ${kG} KG`); 
@@ -68,11 +70,12 @@ const convertLbsToKilos = () => {
 const convertKGToLbs = () => {
   rli.question(`Enter weight in KG\n`, (kG) => {
     const lbs = Math.round(10*(Number(kG)*2.2))/10;
+    /* NEED TO IMPLEMENT ERROR CHECKING IN THE FUTURE
     if(isNaN(lbs)){
       console.log(`This is not a number. Please try again`);
       convertKGToLbs();
     }
-    else console.log(`${kG} KG to lbs is ${lbs} lbs`);
+    else console.log(`${kG} KG to lbs is ${lbs} lbs`);*/
     rli.close();
   });
 }
