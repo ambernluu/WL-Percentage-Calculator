@@ -76,6 +76,7 @@ const convertKGToLbs = () => {
       convertKGToLbs();
     }
     else console.log(`${kG} KG to lbs is ${lbs} lbs`);*/
+    console.log(`${kG} KG to lbs is ${lbs} lbs`);
     rli.close();
   });
 }
