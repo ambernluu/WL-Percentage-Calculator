@@ -34,12 +34,12 @@ const getChoice = (choice) => {
       
     case '4':
       console.log(`Exiting program... Have a great day!`);
-      process.exit();
+      process.exit(); //implement a better exit in the future
     break;
       
     default:
-      console.log(`Not a valid choice`);
-
+      console.log(`${choice} is not an option.`);
+      displayMenu();
     }  
 }
 
@@ -68,7 +68,11 @@ const convertLbsToKilos = () => {
 const convertKGToLbs = () => {
   rli.question(`Enter weight in KG\n`, (kG) => {
     const lbs = Math.round(10*(Number(kG)*2.2))/10;
-    console.log(`${kG} KG to lbs is ${lbs} lbs`);
+    if(isNaN(lbs)){
+      console.log(`This is not a number. Please try again`);
+      convertKGToLbs();
+    }
+    else console.log(`${kG} KG to lbs is ${lbs} lbs`);
     rli.close();
   });
 }
