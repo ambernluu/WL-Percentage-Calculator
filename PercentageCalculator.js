@@ -34,6 +34,7 @@ const getChoice = (choice) => {
       
     case '4':
       console.log(`Exiting program... Have a great day!`);
+      process.exit();
     break;
       
     default:
@@ -57,8 +58,7 @@ const calculatePercentages = () => {
 //converts lbs to KG and returns the weight in KG
 const convertLbsToKilos = () => {
   rli.question(`Enter weight in lbs\n`, (lbs) => {
-    lbs = Number(lbs);
-    const kG = Math.round(10*(lbs/2.2))/10;
+    const kG = Math.round(10*(Number(lbs/2.2)))/10;
     console.log(`${lbs} lbs to KG is ${kG} KG`); 
     rli.close();
   });
@@ -67,9 +67,8 @@ const convertLbsToKilos = () => {
 //converts KG to lbs and returns weight in lbs
 const convertKGToLbs = () => {
   rli.question(`Enter weight in KG\n`, (kG) => {
-    kG = Number(kG);
-    const lbs = Math.round(10*(kG*2.2))/10;
-    console.log(`${KG} KG to lbs is ${lbs} lbs`);
+    const lbs = Math.round(10*(Number(kG)*2.2))/10;
+    console.log(`${kG} KG to lbs is ${lbs} lbs`);
     rli.close();
   });
 }
