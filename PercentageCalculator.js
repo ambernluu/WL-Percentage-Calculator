@@ -29,7 +29,7 @@ const getChoice = (choice) => {
     break;
       
     case '3':
-      convertLbsToKilos();
+      convertKGToLbs();
     break;
       
     case '4':
@@ -58,17 +58,17 @@ const calculatePercentages = () => {
 const convertLbsToKilos = () => {
   rli.question(`Enter weight in lbs\n`, (lbs) => {
     lbs = Number(lbs);
-    kG = Math.round(10*(lbs/2.2))/10;
+    const kG = Math.round(10*(lbs/2.2))/10;
     console.log(`${lbs} lbs to KG is ${kG} KG`); 
     rli.close();
   });
 };
 
 //converts KG to lbs and returns weight in lbs
-const convertKGToLbs = (kG) => {
+const convertKGToLbs = () => {
   rli.question(`Enter weight in KG\n`, (kG) => {
     kG = Number(kG);
-    lbs = Math.round(10*(kG*2.2))/10;
+    const lbs = Math.round(10*(kG*2.2))/10;
     console.log(`${KG} KG to lbs is ${lbs} lbs`);
     rli.close();
   });
